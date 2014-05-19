@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	
+	<context:component-scan base-package="com.employee.controller"/>
+	
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+		
+	 <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+        p:location="/WEB-INF/jdbc-mysql.properties"></bean>
+        
+        <bean id="dataSource"
+        class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+        p:driverClassName="${jdbc.driverClassName}"
+        p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
+        p:password="${jdbc.password}"></bean>
+ 
+        <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	        <property name="dataSource" ref="dataSource"></property>
+	       <!--   <property name="configLocation">
+	            <value>classpath:hibernate.cfg.xml</value>
+	        </property>
+	        <property name="configurationClass">
+	            <value>org.hibernate.cfg.AnnotationConfiguration</value>
+	        </property>-->
+	        <!-- <property name="annotatedClasses">
+				<list>
+					<value>com.employee.entity.Employee</value>
+				</list>
+			</property>-->
+			<property name="mappingResources">
+				<list>
+					<value>resource/employee.hbm.xml</value>
+					<value>resource/employeeDetail.hbm.xml</value>
+					<value>resource/user.hbm.xml</value>
+				</list>
+			</property>
+	        <property name="hibernateProperties">
+	            <props>
+	                <prop key="hibernate.dialect">${jdbc.dialect}</prop>
+	                <prop key="hibernate.show_sql">true</prop>
+	                <prop key="hibernate.hbm2ddl.auto">none</prop>	
+	            </props>
+	        </property>
+    	</bean>
+        <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+   	 		<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+		 <bean id="sessionFilter" class="com.employee.base.filter.SessionFilter"/>
+		 <bean id ="userService" class="com.user.service.UserService"/>
+	 	<!-- <property name="userModel" ref="userModel"/> -->
+	 <bean id ="employee" class = "com.employee.service.EmployeeService"/>	
+</beans>

@@ -1,0 +1,14 @@
+<!DOCTYPE hibernate-mapping SYSTEM "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="com.user.model.UserModel" table="User_Employee">
+      <meta attribute="class-description">
+         This class contains the employee detail. 
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="userId" column="userId" type="string"/>
+      <property name="userName" column="userName" type="string"/>
+      <property name="password" column="password" type="string"/>
+   </class>
+</hibernate-mapping>

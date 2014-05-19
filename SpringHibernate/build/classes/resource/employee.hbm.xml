@@ -1,0 +1,18 @@
+<!DOCTYPE hibernate-mapping SYSTEM "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+   <class name="com.employee.entity.Employee" table="EMPLOYEE">
+      <meta attribute="class-description">
+         This class contains the employee detail. 
+      </meta>
+      
+      <id name="employeeId" column="EMPLOYEE_ID">
+            <generator class="identity" />
+        </id>
+        <one-to-one lazy="false" name="employeeDetail" class="com.employee.details.entity.EmployeeDetail"
+            cascade="save-update"></one-to-one>
+      <property name="firstName" column="first_name" type="string"/>
+      <property name="lastName" column="last_name" type="string"/>
+      <property name="salary" column="salary" type="int"/>
+     
+   </class>
+</hibernate-mapping>
