@@ -6,13 +6,16 @@ import com.pretech.Second;
 
 public class TestService {
 	@Autowired
-	public First firstBean;
+	First firstBean;
 	
 	@Autowired
 	public Second secondBean;
 	
-	public void invokeFirstClass(){
-		//firstBean.method();
+	
+	public void invokeFirstClass() throws Exception{
+		System.out.println("test invokeFirst class***"+firstBean);
+		firstBean.method();
+		//throw new Exception();
 	}
 	
 	public void invokeSecondClass(){

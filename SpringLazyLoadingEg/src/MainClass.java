@@ -15,7 +15,12 @@ public class MainClass {
 		//System.out.println("Calling Second Bean");
 		//context.getBean("secondBean");
 		TestService t  = (TestService)context.getBean("testService");
-		t.invokeFirstClass();
+		try {
+			t.invokeFirstClass();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
