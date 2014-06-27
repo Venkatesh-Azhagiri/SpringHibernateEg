@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" >
+$(document).ready(function(){
+  sendAjax();
+});
+
+function sendAjax() {
+
+$.ajax({ 
+    url: "/SpringJsonJackson/rest/cont/person", 
+    type: 'POST', 
+    dataType: 'json', 
+    data: "{\"name\":\"hmkcode\",\"id\":2}", 
+    contentType: 'application/json',
+    //mimeType: 'application/json',
+    success: function(data) { 
+        alert(data.id + " " + data.name);
+    },
+    error:function(data,status,er) { 
+        alert("error: "+data+" status: "+status+" er:"+er);
+    }
+});
+	/*  var jsonString = "{\"name\":\"hmkcode\",\"id\":2}";
+	  $.ajax({ 
+          url:"/SpringJsonJackson/rest/cont/person",    
+          type:"POST", 
+          contentType: "application/json; charset=utf-8",
+          mimeType: 'application/json',
+          data: jsonString, //Stringified Json Object
+          async: false,    //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
+          cache: false,    //This will force requested pages not to be cached by the browser          
+          processData:false, //To avoid making query String instead of JSON
+          success: function(resposeJsonObject){                           
+  }}); */
+  
+  /*
+$.ajax({
+type:     "GET",
+url:      "https://graph.facebook.com/10150232496792613",
+//url: "add_project_medgenome.do",
+dataType: "jsonp",
+success: function(data){
+  console.log(data);
+}
+});
+  */
+  
+}
+
+</script>
+</head>
+<body>
+SpringMVC JSON
+</body>
+</html>
